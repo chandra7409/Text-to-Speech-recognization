@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>speechvoice</title>
+</head>
+
+<body>
+    <label for="Speech recognition "> SpeechRecognition</label>
+    <input type="text" name="" id="speechToText" placeholder="speak something" onclick="record()">
+    <script>
+        function record() {
+            var recognitopn = new webkitSpeechRecognition();
+            recognition.lang = "en-GB";
+            recognition.onresult = function(event) {
+                console.log(event);
+                document.getElementById('speechToText').value = event.results[0][0].transcript;
+
+            }
+            recognitopn.start();
+        }
+    </script>
+</body>
+
+</html>

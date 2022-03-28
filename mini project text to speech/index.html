@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="style.css">
+
+
+    <style>
+        body {
+            background: #141414;
+        }
+        
+        .poweredby_container {
+            float: right;
+            width: 100px;
+        }
+        
+        .voiceform {
+            float: left;
+        }
+        
+        @media (min-width: 320px) and (max-width: 480px) {
+            .poweredby_container {
+                float: none;
+                margin: 15px auto;
+                display: none;
+            }
+            #voiceselection {
+                max-width: 180px;
+            }
+            .voiceform {
+                float: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-dark text-white ">
+    <div class="container-fluid">
+        <div class="container text-center">
+            <img src="voice2.jpg" alt="" class="mb-3" width="600" height="450" />
+
+            <h1 class=" text-center mt-2">
+                Speech text in javascript
+            </h1>
+        </div>
+    </div>
+
+    <form>
+        <textarea name="" class="txt" cols="15" rows="5" placeholder="Text the Typing......"></textarea>
+
+        <div>
+            <label for=" rate">Rate</label><input type="range" min="0.5" max="2" value="1" step="0.1" id="rate">
+            <div class="rate-value">1</div>
+            <div class="clearfix"></div>
+        </div>
+        <div>
+            <label for="pitch">Pitch</label><input type="range" min="0" max="2" value="1" step="0.1" id="pitch">
+            <div class="pitch-value">1</div>
+            <div class="clearfix"></div>
+        </div>
+        <select>
+
+        </select>
+
+        <div class="controls">
+            <button id="play" type="submit" value="play"><img draggable="false" role="img" class="emoji" alt="▶️"
+                    src="https://s.w.org/images/core/emoji/13.1.0/svg/25b6.svg">Play</button>
+        </div>
+    </form>
+    <button onclick="window.print()">Print this page</button>
+
+
+    <center>
+        <font color="white">
+            <div>
+                <div style="position: relative; display: none;" id="waitingdiv">
+                    Loading ResponsiveVoice…<br> If it doesn’t load please <a rel="nofollow noopener noreferrer" href="https://caniuse.com/#feat=speech-synthesis" target="_blank">check your browser
+                        compatibility</a>
+                </div>
+                <div style="display: inline-block; margin: 0px auto;" id="voicetestdiv">
+                    <div class="voiceform">
+
+                        <br>
+                        <!-- <select id="voiceselection" onclick="responsiveVoice.speak('Select a voice');"
+                            class="input input--dropdown js--animations">
+                            <option value="UK English Female">UK English Female</option>
+                            <option value="UK English Male">UK English Male</option>
+                            <option value="US English Female">US English Female</option>
+                            <option value="US English Male">US English Male</option>
+                            <option value="Arabic Male">Arabic Male</option>
+                            <option value="Arabic Female">Arabic Female</option>
+                            <option value="Armenian Male">Armenian Male</option>
+                            <option value="Australian Female">Australian Female</option>
+                            <option value="Australian Male">Australian Male</option>
+                            <option value="Bangla Bangladesh Female">Bangla Bangladesh Female</option>
+                            <option value="Bangla Bangladesh Male">Bangla Bangladesh Male</option>
+                            <option value="Bangla India Female">Bangla India Female</option>
+                            <option value="Bangla India Male">Bangla India Male</option>
+                            <option value="Brazilian Portuguese Female">Brazilian Portuguese Female</option>
+                            <option value="Chinese Female">Chinese Female</option>
+                            <option value="Chinese Male">Chinese Male</option>
+                            <option value="Chinese (Hong Kong) Female">Chinese (Hong Kong) Female</option>
+                            <option value="Chinese (Hong Kong) Male">Chinese (Hong Kong) Male</option>
+                            <option value="Chinese Taiwan Female">Chinese Taiwan Female</option>
+                            <option value="Chinese Taiwan Male">Chinese Taiwan Male</option>
+                            <option value="Czech Female">Czech Female</option>
+                            <option value="Danish Female">Danish Female</option>
+                            <option value="Deutsch Female">Deutsch Female</option>
+                            <option value="Deutsch Male">Deutsch Male</option>
+                            <option value="Dutch Female">Dutch Female</option>
+                            <option value="Dutch Male">Dutch Male</option>
+                            <option value="Estonian Male">Estonian Male</option>
+                            <option value="Filipino Female">Filipino Female</option>
+                            <option value="Finnish Female">Finnish Female</option>
+                            <option value="French Female">French Female</option>
+                            <option value="French Male">French Male</option>
+                            <option value="French Canadian Female">French Canadian Female</option>
+                            <option value="French Canadian Male">French Canadian Male</option>
+                            <option value="Greek Female">Greek Female</option>
+                            <option value="Hindi Female">Hindi Female</option>
+                            <option value="Hindi Male">Hindi Male</option>
+                            <option value="Hungarian Female">Hungarian Female</option>
+                            <option value="Indonesian Female">Indonesian Female</option>
+                            <option value="Indonesian Male">Indonesian Male</option>
+                            <option value="Italian Female">Italian Female</option>
+                            <option value="Italian Male">Italian Male</option>
+                            <option value="Japanese Female">Japanese Female</option>
+                            <option value="Japanese Male">Japanese Male</option>
+                            <option value="Korean Female">Korean Female</option>
+                            <option value="Korean Male">Korean Male</option>
+                            <option value="Latin Male">Latin Male</option>
+                            <option value="Nepali">Nepali</option>
+                            <option value="Norwegian Female">Norwegian Female</option>
+                            <option value="Norwegian Male">Norwegian Male</option>
+                            <option value="Polish Female">Polish Female</option>
+                            <option value="Polish Male">Polish Male</option>
+                            <option value="Portuguese Female">Portuguese Female</option>
+                            <option value="Portuguese Male">Portuguese Male</option>
+                            <option value="Romanian Female">Romanian Female</option>
+                            <option value="Russian Female">Russian Female</option>
+                            <option value="Sinhala">Sinhala</option>
+                            <option value="Slovak Female">Slovak Female</option>
+                            <option value="Spanish Female">Spanish Female</option>
+                            <option value="Spanish Latin American Female">Spanish Latin American Female</option>
+                            <option value="Spanish Latin American Male">Spanish Latin American Male</option>
+                            <option value="Swedish Female">Swedish Female</option>
+                            <option value="Swedish Male">Swedish Male</option>
+                            <option value="Tamil Female">Tamil Female</option>
+                            <option value="Tamil Male">Tamil Male</option>
+                            <option value="Thai Female">Thai Female</option>
+                            <option value="Thai Male">Thai Male</option>
+                            <option value="Turkish Female">Turkish Female</option>
+                            <option value="Turkish Male">Turkish Male</option>
+                            <option value="Ukrainian Female">Ukrainian Female</option>
+                            <option value="Vietnamese Female">Vietnamese Female</option>
+                            <option value="Vietnamese Male">Vietnamese Male</option>
+                            <option value="Afrikaans Male">Afrikaans Male</option>
+                            <option value="Albanian Male">Albanian Male</option>
+                            <option value="Bosnian Male">Bosnian Male</option>
+                            <option value="Catalan Male">Catalan Male</option>
+                            <option value="Croatian Male">Croatian Male</option>
+                            <option value="Esperanto Male">Esperanto Male</option>
+                            <option value="Icelandic Female">Icelandic Female</option>
+                            <option value="Latvian Male">Latvian Male</option>
+                            <option value="Macedonian Male">Macedonian Male</option>
+                            <option value="Moldavian Female">Moldavian Female</option>
+                            <option value="Montenegrin Male">Montenegrin Male</option>
+                            <option value="Serbian Male">Serbian Male</option>
+                            <option value="Serbo-Croatian Male">Serbo-Croatian Male</option>
+                            <option value="Swahili Male">Swahili Male</option>
+                            <option value="Welsh Male">Welsh Male</option>
+                            <option value="Fallback UK Female">Fallback UK Female</option>
+                            <option value="UK English Female">UK English Female</option>
+                            <option value="UK English Male">UK English Male</option>
+                            <option value="US English Female">US English Female</option>
+                            <option value="US English Male">US English Male</option>
+                            <option value="Arabic Male">Arabic Male</option>
+                            <option value="Arabic Female">Arabic Female</option>
+                            <option value="Armenian Male">Armenian Male</option>
+                            <option value="Australian Female">Australian Female</option>
+                            <option value="Australian Male">Australian Male</option>
+                            <option value="Bangla Bangladesh Female">Bangla Bangladesh Female</option>
+                            <option value="Bangla Bangladesh Male">Bangla Bangladesh Male</option>
+                            <option value="Bangla India Female">Bangla India Female</option>
+                            <option value="Bangla India Male">Bangla India Male</option>
+                            <option value="Brazilian Portuguese Female">Brazilian Portuguese Female</option>
+                            <option value="Chinese Female">Chinese Female</option>
+                            <option value="Chinese Male">Chinese Male</option>
+                            <option value="Chinese (Hong Kong) Female">Chinese (Hong Kong) Female</option>
+                            <option value="Chinese (Hong Kong) Male">Chinese (Hong Kong) Male</option>
+                            <option value="Chinese Taiwan Female">Chinese Taiwan Female</option>
+                            <option value="Chinese Taiwan Male">Chinese Taiwan Male</option>
+                            <option value="Czech Female">Czech Female</option>
+                            <option value="Danish Female">Danish Female</option>
+                            <option value="Deutsch Female">Deutsch Female</option>
+                            <option value="Deutsch Male">Deutsch Male</option>
+                            <option value="Dutch Female">Dutch Female</option>
+                            <option value="Dutch Male">Dutch Male</option>
+                            <option value="Estonian Male">Estonian Male</option>
+                            <option value="Filipino Female">Filipino Female</option>
+                            <option value="Finnish Female">Finnish Female</option>
+                            <option value="French Female">French Female</option>
+                            <option value="French Male">French Male</option>
+                            <option value="French Canadian Female">French Canadian Female</option>
+                            <option value="French Canadian Male">French Canadian Male</option>
+                            <option value="Greek Female">Greek Female</option>
+                            <option value="Hindi Female">Hindi Female</option>
+                            <option value="Hindi Male">Hindi Male</option>
+                            <option value="Hungarian Female">Hungarian Female</option>
+                            <option value="Indonesian Female">Indonesian Female</option>
+                            <option value="Indonesian Male">Indonesian Male</option>
+                            <option value="Italian Female">Italian Female</option>
+                            <option value="Italian Male">Italian Male</option>
+                            <option value="Japanese Female">Japanese Female</option>
+                            <option value="Japanese Male">Japanese Male</option>
+                            <option value="Korean Female">Korean Female</option>
+                            <option value="Korean Male">Korean Male</option>
+                            <option value="Latin Male">Latin Male</option>
+                            <option value="Nepali">Nepali</option>
+                            <option value="Norwegian Female">Norwegian Female</option>
+                            <option value="Norwegian Male">Norwegian Male</option>
+                            <option value="Polish Female">Polish Female</option>
+                            <option value="Polish Male">Polish Male</option>
+                            <option value="Portuguese Female">Portuguese Female</option>
+                            <option value="Portuguese Male">Portuguese Male</option>
+                            <option value="Romanian Female">Romanian Female</option>
+                            <option value="Russian Female">Russian Female</option>
+                            <option value="Sinhala">Sinhala</option>
+                            <option value="Slovak Female">Slovak Female</option>
+                            <option value="Spanish Female">Spanish Female</option>
+                            <option value="Spanish Latin American Female">Spanish Latin American Female</option>
+                            <option value="Spanish Latin American Male">Spanish Latin American Male</option>
+                            <option value="Swedish Female">Swedish Female</option>
+                            <option value="Swedish Male">Swedish Male</option>
+                            <option value="Tamil Female">Tamil Female</option>
+                            <option value="Tamil Male">Tamil Male</option>
+                            <option value="Thai Female">Thai Female</option>
+                            <option value="Thai Male">Thai Male</option>
+                            <option value="Turkish Female">Turkish Female</option>
+                            <option value="Turkish Male">Turkish Male</option>
+                            <option value="Ukrainian Female">Ukrainian Female</option>
+                            <option value="Vietnamese Female">Vietnamese Female</option>
+                            <option value="Vietnamese Male">Vietnamese Male</option>
+                            <option value="Afrikaans Male">Afrikaans Male</option>
+                            <option value="Albanian Male">Albanian Male</option>
+                            <option value="Bosnian Male">Bosnian Male</option>
+                            <option value="Catalan Male">Catalan Male</option>
+                            <option value="Croatian Male">Croatian Male</option>
+                            <option value="Esperanto Male">Esperanto Male</option>
+                            <option value="Icelandic Female">Icelandic Female</option>
+                            <option value="Latvian Male">Latvian Male</option>
+                            <option value="Macedonian Male">Macedonian Male</option>
+                            <option value="Moldavian Female">Moldavian Female</option>
+                            <option value="Montenegrin Male">Montenegrin Male</option>
+                            <option value="Serbian Male">Serbian Male</option>
+                            <option value="Serbo-Croatian Male">Serbo-Croatian Male</option>
+                            <option value="Swahili Male">Swahili Male</option>
+                            <option value="Welsh Male">Welsh Male</option>
+                            <option value="Fallback UK Female">Fallback UK Female</option>
+                        </select>-->
+                        &nbsp;&nbsp;&nbsp;<button id="playbutton" class="butt js--triggerAnimation" type="button" value="Play"><img draggable="false" role="img" class="emoji" alt="▶️"
+                                src="https://s.w.org/images/core/emoji/13.1.0/svg/25b6.svg"> Play </button>
+                    </div>
+                    <div id="playshield" class="poweredby_container"><svg viewBox="-50 -50 612 612" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                            <filter id="black-glow">
+                                <feColorMatrix type="matrix"
+                                    values="0 0 0 0.6   0  0 0 0 0   0  0 0 0 0   0  0 0 0 1 0">
+                                </feColorMatrix>
+                                <feGaussianBlur id="filterblur" stdDeviation="34.5104263807915" result="coloredBlur">
+                                </feGaussianBlur>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"></feMergeNode>
+                                    <feMergeNode in="SourceGraphic"></feMergeNode>
+                                </feMerge>
+                            </filter>
+                            <g style="filter:url(#black-glow)">
+                                <path id="svg_1" d="m71,460l-41,-460l451,0l-41,460l-185,52" fill="#c10908"></path>
+                                <path id="svg_2" d="m256,472l149,-41l35,-394l-184,0" fill="#e62e42"></path>
+                            </g>
+                            <image xlink:href="//responsivevoice.org/wp-content/uploads/2015/06/mouth.png" id="svg_4"
+                                height="311" width="285" y="95" x="114"></image>
+                        </svg>
+                    </div>
+                </div>
+                <!--  <script src="https://code.responsivevoice.org/responsivevoice.js?key=YjnTpDNJ"></script>
+                <select id="voice_selection" name="responsive_voice" data-responsive-voice="profile.69012"
+                    class="custom-select" data-hj-whitelist="">
+                    <optgroup class="" label="Voice Profiles">
+                        <option value="profile.69012">My Profile 1
+                            (UK English Female)
+                        </option>
+                        <button id="playbutton" class="butt js--triggerAnimation" type="button" value="Play"><img
+                                draggable="false" role="img" class="emoji" alt="▶️"
+                                src="https://s.w.org/images/core/emoji/13.1.0/svg/25b6.svg"> Play </button>
+                        <button class="btn text-danger button_test_message" type="button"
+                            data-target-text="voice_selection">
+                            <i class="fa fa-play-circle fa-lg fa-2x"></i>
+                        </button>
+
+                    </optgroup>
+
+                    <script>var voicelist = responsiveVoice.getVoices(); var vselect = $("#voiceselection"); $.each(voicelist, function () { vselect.append($("<option >").val(this.name).text(this.name)); }); playbutton.onclick = function () { responsiveVoice.speak(($('#text').val()) ? $('#text').val() : $('#text').attr("placeholder"), $('#voiceselection').val()); $('#text').focus(); }; playshield.onclick = function () { responsiveVoice.speak(($('#text').val()) ? $('#text').val() : $('#text').attr("placeholder"), $('#voiceselection').val()); $('#text').focus(); }; $('#voicetestdiv').hide(); $('#waitingdiv').show(); responsiveVoice.OnVoiceReady = function () { $('#voicetestdiv').fadeIn(0.5); $('#waitingdiv').fadeOut(0.5); $('#text').focus(); }
+                    </script>-->
+            </div>
+        </font>
+    </center>
+    </form>
+    </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <hr pt-5>
+
+    <div class="container-fluid text-center">
+
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-12">
+                    <h2>Our Blogs</h2>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4">
+                    <img src="technology2.jpg" class="img-fluid" alt="...">
+                    <h3>The SpeechRecognition interface of the Web Speech API is the controller interface for the recognition service; this also handles the</h3>
+                </div>
+                <div class="col-lg-4">
+                    <img src="technology3.jpg" class="img-fluid" alt="...">
+                    <h3>The SpeechRecognition interface of the Web Speech API is the controller interface for the recognition service; this also handles the</h3>
+                </div>
+                <div class="col-lg-4">
+                    <img src="voice3.png" class="img-fluid" alt="...">
+                    <h3>The SpeechRecognition interface of the Web Speech API is the controller interface for the recognition service; this also handles the</h3>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    </div>
+    <script src="script1.js"></script>
+
+</body>
+
+</html>
